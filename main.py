@@ -80,14 +80,10 @@ if __name__ == "__main__":
         }
     ]
 
-    # 3_000_000 time: (2529/60/60) core: 4
-    # print_unique_user(locales=locales, iter_count=3_000_000, success_callback=print_result)
+    instance = instances[2]
+    start_time = time.time()
+    r = print_unique_user(locales=locales, iter_count=1_000_000, core_count=6)
+    total_time_hour = ((time.time() - start_time) / 60 / 60)
 
-    for instance in instances:
-        start_time = time.time()
-        r = print_unique_user(locales=locales, iter_count=800_000, core_count=instance['vcore'])
-        total_time_hour = ((time.time() - start_time) / 60 / 60)
-
-        charge = instance['price'] * total_time_hour * 25_000
-
-        logging.info(f'Name: {instance['name']} ({instance['vcore']} vcore), Total time: {total_time_hour} hours, Charge: {charge:.2f} VND')
+    logging.info(
+        f'Name: {instance['name']}, Total time: {total_time_hour} hours')
