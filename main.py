@@ -62,18 +62,21 @@ if __name__ == "__main__":
     instances = [
         {
             'name': 't3.medium',
+            'core': 1,
             'vcore': 2,
             'ram': 4,
             'price': 0.0528
         },
         {
             'name': 't3.xlarge',
+            'core': 2,
             'vcore': 4,
             'ram': 16,
             'price': 0.2112
         },
         {
             'name': 't3.2xlarge',
+            'core': 4,
             'vcore': 8,
             'ram': 32,
             'price': 0.4224
@@ -82,7 +85,7 @@ if __name__ == "__main__":
 
     instance = instances[2]
     start_time = time.time()
-    r = print_unique_user(locales=locales, iter_count=1_000_000, core_count=6)
+    r = print_unique_user(locales=locales, iter_count=1_000_000, core_count=instance['core'])
     total_time_hour = ((time.time() - start_time) / 60 / 60)
 
     logging.info(
